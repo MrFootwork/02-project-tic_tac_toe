@@ -1,5 +1,23 @@
 h1 {
-  color: green;
+  color: red;
+}
+
+.gameBoard {
+  margin: auto;
+  width: 30rem;
+  height: 30rem;
+  display: grid;
+  grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+  gap: 1rem;
+}
+.gameBoard .gameField {
+  background-color: #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gameBoard .gameField .mark {
+  font-size: 3rem;
 }
 
 /*# sourceMappingURL=main.css.map */

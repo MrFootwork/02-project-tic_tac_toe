@@ -1,4 +1,1 @@
-//sass --watch ./scss/main.scss:./css/main.css
-h1 {
-	color: green;
-}
+@use './board/board.scss'; //sass --watch ./scss/main.scss:./css/main.css
