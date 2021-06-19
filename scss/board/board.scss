@@ -15,7 +15,11 @@ h1 {
 		align-items: center;
 		justify-content: center;
 		.mark {
-			font-size: 3rem;
+			font-size: 8rem;
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 	}
 }

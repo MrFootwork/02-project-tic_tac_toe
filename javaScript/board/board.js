@@ -1,9 +1,3 @@
 export const gameBoard = (function () {
-	return {
-		board: [
-			[0, 0, 0],
-			[0, 0, 0],
-			[0, 0, 0],
-		],
-	}
+	return ['x', 'o', '', 'o', '', 'o', 'x', 'o', 'o']
 })()

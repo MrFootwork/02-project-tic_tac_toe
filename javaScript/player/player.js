@@ -1,4 +1,4 @@
-export const playerFactory = name => {
+export const playerFactory = (name, mark) => {
 	const moves = () => console.log(`${name} makes his move...`)
-	return { name, moves }
+	return { name, mark, moves }
 }

@@ -7,37 +7,15 @@
 		<title>Tic Tac Toe</title>
 		<link rel="stylesheet" href="css/main.css" />
 		<script defer type="module" src="javaScript/main.js"></script>
+		<script
+			defer
+			src="https://kit.fontawesome.com/5ce2413c7e.js"
+			crossorigin="anonymous"
+		></script>
 	</head>
 	<body>
 		<h1>Test</h1>
-		<div class="gameBoard">
-			<div class="gameField">
-				<p class="mark" data-row="0" data-column="0">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="0" data-column="1">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="0" data-column="2">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="1" data-column="0">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="1" data-column="1">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="1" data-column="2">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="2" data-column="0">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="2" data-column="1">0</p>
-			</div>
-			<div class="gameField">
-				<p class="mark" data-row="2" data-column="2">0</p>
-			</div>
-		</div>
+		<h2>Turn: <span id="turn" class="turn"></span></h2>
+		<div id="gameBoard" class="gameBoard"></div>
 	</body>
 </html>
