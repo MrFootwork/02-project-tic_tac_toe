@@ -16,50 +16,72 @@
 	align-items: center;
 	position: relative;
 	cursor: pointer;
-	&.x,
-	&.o {
-		cursor: not-allowed;
-	}
+
 	&.x {
-		@at-root &::before,
-			&::after,
-			.board.x .cell:not(.x):not(.o):hover::before,
-			.board.x .cell:not(.x):not(.o):hover::after {
+		cursor: not-allowed;
+		@at-root %x-base {
 			content: '';
 			position: absolute;
 			width: calc(var(--mark-size) * 0.15);
 			height: var(--mark-size);
-			background-color: black;
 		}
-		@at-root .board.x .cell:not(.x):not(.o):hover::before,
-			.board.x .cell:not(.x):not(.o):hover::after {
-			background-color: grey;
-		}
-		@at-root &::before,
-			.board.x .cell:not(.x):not(.o):hover::before {
+		&::before {
+			@extend %x-base;
+			background-color: var(--mark-color);
 			transform: rotate(45deg);
 		}
-		@at-root &::after,
-			.board.x .cell:not(.x):not(.o):hover::after {
+		&::after {
+			@extend %x-base;
+			background-color: var(--mark-color);
+			transform: rotate(-45deg);
+		}
+		@at-root .board.x .cell:not(.x):not(.o):hover::before {
+			@extend %x-base;
+			background-color: var(--mark-hover-color);
+			transform: rotate(45deg);
+		}
+		@at-root .board.x .cell:not(.x):not(.o):hover::after {
+			@extend %x-base;
+			background-color: var(--mark-hover-color);
 			transform: rotate(-45deg);
 		}
 	}
 	&.o {
-		&::before,
-		&::after {
+		cursor: not-allowed;
+		@at-root %o-base {
 			content: '';
 			position: absolute;
 			border-radius: 50%;
 		}
-		&::before {
+		@at-root %before-size {
 			width: var(--mark-size);
 			height: var(--mark-size);
-			background-color: black;
+		}
+		@at-root %after-size {
+			background-color: #fff;
+			width: calc(var(--mark-size) * 0.7);
+			height: calc(var(--mark-size) * 0.7);
+		}
+
+		&::before {
+			@extend %o-base;
+			@extend %before-size;
+			background-color: var(--mark-color);
 		}
 		&::after {
-			width: calc(var(--mark-size) * 0.75);
-			height: calc(var(--mark-size) * 0.75);
-			background-color: #fff;
+			@extend %o-base;
+			@extend %after-size;
+			background-color: var(--mark-circle-color);
+		}
+		@at-root .board.o .cell:not(.x):not(.o):hover::before {
+			@extend %o-base;
+			@extend %before-size;
+			background-color: var(--mark-hover-color);
+		}
+		@at-root .board.o .cell:not(.x):not(.o):hover::after {
+			@extend %o-base;
+			@extend %after-size;
+			background-color: var(--mark-circle-color);
 		}
 	}
 	&:first-child,
