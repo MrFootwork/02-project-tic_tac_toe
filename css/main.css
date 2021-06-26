@@ -26,8 +26,8 @@
   cursor: not-allowed;
 }
 .cell.x::before, .cell.x::after,
-.board.x .cell:hover::before,
-.board.x .cell:hover::after {
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
   content: "";
   position: absolute;
   width: calc(var(--mark-size) * 0.15);
@@ -35,18 +35,18 @@
   background-color: black;
 }
 
-.board.x .cell:hover::before,
-.board.x .cell:hover::after {
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
   background-color: grey;
 }
 
 .cell.x::before,
-.board.x .cell:hover::before {
+.board.x .cell:not(.x):not(.o):hover::before {
   transform: rotate(45deg);
 }
 
 .cell.x::after,
-.board.x .cell:hover::after {
+.board.x .cell:not(.x):not(.o):hover::after {
   transform: rotate(-45deg);
 }
 

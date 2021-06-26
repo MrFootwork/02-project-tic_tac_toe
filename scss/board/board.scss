@@ -23,24 +23,24 @@
 	&.x {
 		@at-root &::before,
 			&::after,
-			.board.x .cell:hover::before,
-			.board.x .cell:hover::after {
+			.board.x .cell:not(.x):not(.o):hover::before,
+			.board.x .cell:not(.x):not(.o):hover::after {
 			content: '';
 			position: absolute;
 			width: calc(var(--mark-size) * 0.15);
 			height: var(--mark-size);
 			background-color: black;
 		}
-		@at-root .board.x .cell:hover::before,
-			.board.x .cell:hover::after {
+		@at-root .board.x .cell:not(.x):not(.o):hover::before,
+			.board.x .cell:not(.x):not(.o):hover::after {
 			background-color: grey;
 		}
 		@at-root &::before,
-			.board.x .cell:hover::before {
+			.board.x .cell:not(.x):not(.o):hover::before {
 			transform: rotate(45deg);
 		}
 		@at-root &::after,
-			.board.x .cell:hover::after {
+			.board.x .cell:not(.x):not(.o):hover::after {
 			transform: rotate(-45deg);
 		}
 	}
