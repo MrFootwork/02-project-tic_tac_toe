@@ -14,32 +14,51 @@ const gameController = (function () {
 	const X_CLASS = 'x'
 	const O_CLASS = 'o'
 	const cellElements = document.querySelectorAll('[data-cell]')
-	const board = document.querySelector('#board')
-	const message = document.querySelector('.winning-message-text')
+	const board = document.getElementById('board')
+	const gameOverModal = document.getElementById('winning-message')
+	const message = document.getElementById('winning-message-text')
+	const restartButton = document.getElementById('restart-button')
 	let crossTurn = true
 
-	cellElements.forEach(cell => {
-		cell.addEventListener('click', handleClick, { once: true })
-	})
+	restartButton.addEventListener('click', restartHandler)
+	function restartHandler() {
+		crossTurn = true
+		board.className = `board ${X_CLASS}`
+		cellElements.forEach(cell => {
+			cell.className = 'cell'
+		})
+		gameOverModal.dataset.showMessage = 'false'
+		resetEventListeners()
+	}
+
+	resetEventListeners()
+	function resetEventListeners() {
+		cellElements.forEach(cell => {
+			cell.addEventListener('click', handleClick, { once: true })
+		})
+	}
+
 	function handleClick(e) {
 		const currentClass = crossTurn ? X_CLASS : O_CLASS
 		const nextClass = !crossTurn ? X_CLASS : O_CLASS
 		const cell = e.target
 		placeMark(cell, currentClass)
 		if (hasWinner(currentClass)) {
-			message.innerHTML = `${currentClass} wins!`
-			document.getElementById('winning-message').dataset.showMessage = true
+			message.innerText = `${currentClass} wins!`
+			gameOverModal.dataset.showMessage = true
 		}
 		if (isDraw()) {
-			message.innerHTML = `It's a draw!`
-			document.getElementById('winning-message').dataset.showMessage = true
+			message.innerText = `It's a draw!`
+			gameOverModal.dataset.showMessage = true
 		}
 		switchTurn()
 		setBoardHoverClass(currentClass, nextClass)
 	}
+
 	function placeMark(cell, currentClass) {
 		cell.classList.add(currentClass)
 	}
+
 	function hasWinner(currentClass) {
 		return WIN_COMBINATIONS.some(combination => {
 			return combination.every(index => {
@@ -47,15 +66,18 @@ const gameController = (function () {
 			})
 		})
 	}
+
 	function isDraw() {
 		const markedCells = document.querySelectorAll(
 			'[data-cell].x, [data-cell].o'
 		)
 		return markedCells.length === 9
 	}
+
 	function switchTurn() {
 		crossTurn = !crossTurn
 	}
+
 	function setBoardHoverClass(currentClass, nextClass) {
 		board.classList.remove(currentClass)
 		board.classList.add(nextClass)
