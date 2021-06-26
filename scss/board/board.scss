@@ -1,2 +1,81 @@
-.gameBoard {
+.board {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	border: 2px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+	&.x,
+	&.o {
+		cursor: not-allowed;
+	}
+	&.x {
+		@at-root &::before,
+			&::after,
+			.board.x .cell:hover::before,
+			.board.x .cell:hover::after {
+			content: '';
+			position: absolute;
+			width: calc(var(--mark-size) * 0.15);
+			height: var(--mark-size);
+			background-color: black;
+		}
+		@at-root .board.x .cell:hover::before,
+			.board.x .cell:hover::after {
+			background-color: grey;
+		}
+		@at-root &::before,
+			.board.x .cell:hover::before {
+			transform: rotate(45deg);
+		}
+		@at-root &::after,
+			.board.x .cell:hover::after {
+			transform: rotate(-45deg);
+		}
+	}
+	&.o {
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			border-radius: 50%;
+		}
+		&::before {
+			width: var(--mark-size);
+			height: var(--mark-size);
+			background-color: black;
+		}
+		&::after {
+			width: calc(var(--mark-size) * 0.75);
+			height: calc(var(--mark-size) * 0.75);
+			background-color: #fff;
+		}
+	}
+	&:first-child,
+	&:nth-child(2),
+	&:nth-child(3) {
+		border-top: none;
+	}
+	&:nth-child(3n + 1) {
+		border-left: none;
+	}
+	&:nth-child(3n) {
+		border-right: none;
+	}
+	&:nth-child(7),
+	&:nth-child(8),
+	&:last-child {
+		border-bottom: none;
+	}
 }

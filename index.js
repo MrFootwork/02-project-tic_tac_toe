@@ -4,19 +4,23 @@
 // #		Board
 // ################################
 const gameBoard = (function () {
-	let board = [
+	let state = [
 		['x', 0, 0],
 		[0, 0, 0],
 		[0, 0, 'o'],
 	]
-	return { board }
+	const addMove = function (player) {}
+	return { state, addMove }
 })()
 
 // ################################
 // #		Player
 // ################################
 const player = name => {
-	const moves = () => console.log(`${name} makes his move...`)
+	const moves = () => {
+		console.log(`${name} makes his move...`)
+		return ''
+	}
 	return { name, moves }
 }
 
@@ -28,4 +32,4 @@ const player2 = player('enemy')
 
 player1.moves()
 console.log(player2)
-console.log(gameBoard.board)
+console.log(gameBoard.state)
