@@ -25,6 +25,7 @@
 			width: calc(var(--mark-size) * 0.15);
 			height: var(--mark-size);
 		}
+
 		&::before {
 			@extend %x-base;
 			background-color: var(--mark-color);
@@ -58,7 +59,7 @@
 			height: var(--mark-size);
 		}
 		@at-root %after-size {
-			background-color: #fff;
+			background-color: var(--mark-circle-color);
 			width: calc(var(--mark-size) * 0.7);
 			height: calc(var(--mark-size) * 0.7);
 		}
@@ -71,7 +72,6 @@
 		&::after {
 			@extend %o-base;
 			@extend %after-size;
-			background-color: var(--mark-circle-color);
 		}
 		@at-root .board.o .cell:not(.x):not(.o):hover::before {
 			@extend %o-base;
@@ -81,7 +81,6 @@
 		@at-root .board.o .cell:not(.x):not(.o):hover::after {
 			@extend %o-base;
 			@extend %after-size;
-			background-color: var(--mark-circle-color);
 		}
 	}
 	&:first-child,

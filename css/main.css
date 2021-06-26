@@ -68,7 +68,7 @@
 }
 
 .board.o .cell:not(.x):not(.o):hover::after, .cell.o::after {
-  background-color: #fff;
+  background-color: var(--mark-circle-color);
   width: calc(var(--mark-size) * 0.7);
   height: calc(var(--mark-size) * 0.7);
 }
@@ -76,15 +76,8 @@
 .cell.o::before {
   background-color: var(--mark-color);
 }
-.cell.o::after {
-  background-color: var(--mark-circle-color);
-}
 .board.o .cell:not(.x):not(.o):hover::before {
   background-color: var(--mark-hover-color);
-}
-
-.board.o .cell:not(.x):not(.o):hover::after {
-  background-color: var(--mark-circle-color);
 }
 
 .cell:first-child, .cell:nth-child(2), .cell:nth-child(3) {
