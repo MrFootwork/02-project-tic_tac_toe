@@ -1,23 +1,31 @@
-export const gameBoard = (function () {
-	return {
-		board: [
-			[0, 0, 0],
-			[0, 0, 0],
-			[0, 0, 0],
-		],
-	}
+'use strict'
+
+// ################################
+// #		Board
+// ################################
+const gameBoard = (function () {
+	let board = [
+		['x', 0, 0],
+		[0, 0, 0],
+		[0, 0, 'o'],
+	]
+	return { board }
 })()
 
-export const playerFactory = name => {
+// ################################
+// #		Player
+// ################################
+const player = name => {
 	const moves = () => console.log(`${name} makes his move...`)
 	return { name, moves }
 }
 
-const player1 = createPlayer('Pandau')
-const player2 = createPlayer('Jared')
+// ################################
+// #		Script
+// ################################
+const player1 = player('Pandau')
+const player2 = player('enemy')
 
-console.log(gameBoard.board)
-console.log(player1.name)
 player1.moves()
-console.log(player2.name)
-player2.moves()
+console.log(player2)
+console.log(gameBoard.board)

@@ -1,1 +1,3 @@
-@use './board/board.scss'; //sass --watch ./scss/main.scss:./css/main.css
+//sass --watch ./scss/main.scss:./css/main.css
+@use './variables/variables.scss';
+@use './board/board.scss';
