@@ -1,113 +1,78 @@
 'use strict'
 
-const gameController = (function () {
-	const WIN_COMBINATIONS = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6],
-	]
-	const X_CLASS = 'x'
-	const O_CLASS = 'o'
-	const cellElements = document.querySelectorAll('[data-cell]')
-	const board = document.getElementById('board')
-	const gameOverModal = document.getElementById('winning-message')
-	const message = document.getElementById('winning-message-text')
-	const restartButton = document.getElementById('restart-button')
-	let crossTurn = true
+import gameController from './js/gameController.js'
 
-	restartButton.addEventListener('click', restartHandler)
-	function restartHandler() {
-		crossTurn = true
-		board.className = `board ${X_CLASS}`
-		cellElements.forEach(cell => {
-			cell.className = 'cell'
-		})
-		gameOverModal.dataset.showMessage = 'false'
-		resetEventListeners()
-	}
+// const gameController = (function () {
+// 	function handleClick(e) {
+// 		const currentClass = crossTurn ? X_CLASS : O_CLASS
+// 		const nextClass = !crossTurn ? X_CLASS : O_CLASS
+// 		const cell = e.target
+// 		placeMark(cell, currentClass)
+// 		if (hasWinner(currentClass)) {
+// 			message.innerText = `${currentClass} wins!`
+// 			gameOverModal.dataset.showMessage = true
+// 		}
+// 		if (isDraw()) {
+// 			message.innerText = `It's a draw!`
+// 			gameOverModal.dataset.showMessage = true
+// 		}
+// 		switchTurn()
+// 		setBoardHoverClass(currentClass, nextClass)
+// 	}
 
-	resetEventListeners()
-	function resetEventListeners() {
-		cellElements.forEach(cell => {
-			cell.addEventListener('click', handleClick, { once: true })
-		})
-	}
+// 	function placeMark(cell, currentClass) {
+// 		cell.classList.add(currentClass)
+// 	}
 
-	function handleClick(e) {
-		const currentClass = crossTurn ? X_CLASS : O_CLASS
-		const nextClass = !crossTurn ? X_CLASS : O_CLASS
-		const cell = e.target
-		placeMark(cell, currentClass)
-		if (hasWinner(currentClass)) {
-			message.innerText = `${currentClass} wins!`
-			gameOverModal.dataset.showMessage = true
-		}
-		if (isDraw()) {
-			message.innerText = `It's a draw!`
-			gameOverModal.dataset.showMessage = true
-		}
-		switchTurn()
-		setBoardHoverClass(currentClass, nextClass)
-	}
+// 	function hasWinner(currentClass) {
+// 		return WIN_COMBINATIONS.some(combination => {
+// 			return combination.every(index => {
+// 				return cellElements[index].classList.contains(currentClass)
+// 			})
+// 		})
+// 	}
 
-	function placeMark(cell, currentClass) {
-		cell.classList.add(currentClass)
-	}
+// 	function isDraw() {
+// 		const markedCells = document.querySelectorAll(
+// 			'[data-cell].x, [data-cell].o'
+// 		)
+// 		return markedCells.length === 9
+// 	}
 
-	function hasWinner(currentClass) {
-		return WIN_COMBINATIONS.some(combination => {
-			return combination.every(index => {
-				return cellElements[index].classList.contains(currentClass)
-			})
-		})
-	}
+// 	function switchTurn() {
+// 		crossTurn = !crossTurn
+// 	}
 
-	function isDraw() {
-		const markedCells = document.querySelectorAll(
-			'[data-cell].x, [data-cell].o'
-		)
-		return markedCells.length === 9
-	}
+// 	function setBoardHoverClass(currentClass, nextClass) {
+// 		board.classList.remove(currentClass)
+// 		board.classList.add(nextClass)
+// 	}
+// })()
 
-	function switchTurn() {
-		crossTurn = !crossTurn
-	}
+// const gameBoard = (function () {
+// 	let state = [
+// 		[0, 0, 0],
+// 		[0, 0, 0],
+// 		[0, 0, 0],
+// 	]
+// 	const addMove = function (player) {}
+// 	return { state, addMove }
+// })()
 
-	function setBoardHoverClass(currentClass, nextClass) {
-		board.classList.remove(currentClass)
-		board.classList.add(nextClass)
-	}
-})()
+// const player = name => {
+// 	const moves = () => {
+// 		console.log(`${name} makes his move...`)
+// 		return ''
+// 	}
+// 	return { name, moves }
+// }
 
-const gameBoard = (function () {
-	let state = [
-		[0, 0, 0],
-		[0, 0, 0],
-		[0, 0, 0],
-	]
-	const addMove = function (player) {}
-	return { state, addMove }
-})()
+// // ################################
+// // #		Script
+// // ################################
+// const player1 = player('Pandau')
+// const player2 = player('enemy')
 
-const player = name => {
-	const moves = () => {
-		console.log(`${name} makes his move...`)
-		return ''
-	}
-	return { name, moves }
-}
-
-// ################################
-// #		Script
-// ################################
-const player1 = player('Pandau')
-const player2 = player('enemy')
-
-player1.moves()
-console.log(player2)
-console.log(gameBoard.state)
+// player1.moves()
+// console.log(player2)
+// console.log(gameBoard.state)
