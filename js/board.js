@@ -1,4 +1,17 @@
 export default function () {
+	const board = document.getElementById('board')
+	const cells = document.querySelectorAll('[data-cell]')
+
+	var crossTurn = true
+
+	function placeMark(cell, currentClass) {
+		cell.classList.add(currentClass)
+	}
+
+	function switchTurn() {
+		this.crossTurn = !this.crossTurn
+	}
+
 	const WIN_COMBINATIONS = [
 		[0, 1, 2],
 		[3, 4, 5],
@@ -10,5 +23,5 @@ export default function () {
 		[2, 4, 6],
 	]
 
-	return { DOMcells, WIN_COMBINATIONS }
+	return { cells, board, crossTurn, placeMark, switchTurn, WIN_COMBINATIONS }
 }

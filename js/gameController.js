@@ -1,8 +1,13 @@
 import gameBoard from './board.js'
 import player from './player.js'
 
+//TODO Input for player names
+//TODO start/restart button
+//TODO AI with minimax algorithm
+
 export default function () {
 	const board = gameBoard()
+	console.log(board)
 
 	function init() {
 		DOMrestartButton.addEventListener('click', restartHandler)
@@ -14,9 +19,9 @@ export default function () {
 	}
 
 	function restartHandler() {
-		crossTurn = true
-		DOMboard.className = `board ${X_CLASS}`
-		DOMcells.forEach(cell => {
+		board.crossTurn = true
+		board.board.className = `board ${X_CLASS}`
+		board.cells.forEach(cell => {
 			cell.className = 'cell'
 		})
 		showWinningMessage(false)
@@ -24,20 +29,20 @@ export default function () {
 	}
 
 	function resetEventListeners() {
-		DOMcells.forEach(cell => {
+		board.cells.forEach(cell => {
 			cell.addEventListener('click', handleClick, { once: true })
 		})
 	}
 
 	function handleClick(e) {
-		const currentClass = crossTurn ? X_CLASS : O_CLASS
-		const nextClass = !crossTurn ? X_CLASS : O_CLASS
+		const currentClass = board.crossTurn ? X_CLASS : O_CLASS
+		const nextClass = !board.crossTurn ? X_CLASS : O_CLASS
 		const cell = e.target
 
-		placeMark(cell, currentClass)
+		board.placeMark(cell, currentClass)
 
-		if (hasWinner(currentClass)) {
-			DOMmessage.innerText = `${currentClass} wins!`
+		if (isWinner(currentClass)) {
+			DOMmessage.innerText = `${currentClass.toUpperCase()} wins!`
 			showWinningMessage(true)
 		}
 
@@ -46,19 +51,15 @@ export default function () {
 			showWinningMessage(true)
 		}
 
-		switchTurn()
+		board.switchTurn()
 
 		setBoardHoverClass(currentClass, nextClass)
 	}
 
-	function placeMark(cell, currentClass) {
-		cell.classList.add(currentClass)
-	}
-
-	function hasWinner(currentClass) {
+	function isWinner(currentClass) {
 		return board.WIN_COMBINATIONS.some(combination => {
 			return combination.every(index => {
-				return DOMcells[index].classList.contains(currentClass)
+				return board.cells[index].classList.contains(currentClass)
 			})
 		})
 	}
@@ -70,13 +71,9 @@ export default function () {
 		return markedCells.length === 9
 	}
 
-	function switchTurn() {
-		crossTurn = !crossTurn
-	}
-
 	function setBoardHoverClass(currentClass, nextClass) {
-		DOMboard.classList.remove(currentClass)
-		DOMboard.classList.add(nextClass)
+		board.board.classList.remove(currentClass)
+		board.board.classList.add(nextClass)
 	}
 
 	return { init }
