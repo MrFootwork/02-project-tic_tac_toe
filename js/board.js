@@ -1,9 +1,4 @@
 const board = (function () {
-	let state = [
-		[0, 0, 0],
-		[0, 0, 0],
-		[0, 0, 0],
-	]
 	const WIN_COMBINATIONS = [
 		[0, 1, 2],
 		[3, 4, 5],
@@ -18,10 +13,50 @@ const board = (function () {
 	const O_CLASS = 'o'
 	const cellElements = document.querySelectorAll('[data-cell]')
 	const board = document.getElementById('board')
-	const addMove = function (player) {}
-	const test = function () {
-		console.log('test FUnktion funktioniert')
+	function handleClick(e) {
+		const currentClass = crossTurn ? X_CLASS : O_CLASS
+		const nextClass = !crossTurn ? X_CLASS : O_CLASS
+		const cell = e.target
+		placeMark(cell, currentClass)
+		if (hasWinner(currentClass)) {
+			message.innerText = `${currentClass} wins!`
+			gameOverModal.dataset.showMessage = true
+		}
+		if (isDraw()) {
+			message.innerText = `It's a draw!`
+			gameOverModal.dataset.showMessage = true
+		}
+		switchTurn()
+		setBoardHoverClass(currentClass, nextClass)
 	}
-	return { state, addMove, test }
+
+	function placeMark(cell, currentClass) {
+		cell.classList.add(currentClass)
+	}
+
+	function hasWinner(currentClass) {
+		return WIN_COMBINATIONS.some(combination => {
+			return combination.every(index => {
+				return cellElements[index].classList.contains(currentClass)
+			})
+		})
+	}
+
+	function isDraw() {
+		const markedCells = document.querySelectorAll(
+			'[data-cell].x, [data-cell].o'
+		)
+		return markedCells.length === 9
+	}
+
+	function switchTurn() {
+		crossTurn = !crossTurn
+	}
+
+	function setBoardHoverClass(currentClass, nextClass) {
+		board.classList.remove(currentClass)
+		board.classList.add(nextClass)
+	}
+	return {}
 })()
 export default board
