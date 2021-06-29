@@ -1,4 +1,5 @@
 const player = name => {
+	this.name = name
 	const setName = () => {}
 	const getName = () => {
 		console.log(`${name} makes his move...`)
