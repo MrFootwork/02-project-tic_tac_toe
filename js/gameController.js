@@ -1,8 +1,7 @@
 import gameBoard from './board.js'
 import player from './player.js'
 
-//TODO Input for player names
-//TODO start/restart button
+//FIXME start/restart button
 //TODO AI with minimax algorithm
 
 export default function () {

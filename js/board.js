@@ -1,3 +1,5 @@
+//TODO Erweiterung auf 5 gewinnt auf Go-Brett
+
 export default function () {
 	const board = document.getElementById('board')
 	const cells = document.querySelectorAll('[data-cell]')

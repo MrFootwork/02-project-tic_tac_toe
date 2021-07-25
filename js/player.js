@@ -1,3 +1,4 @@
+//FIXME Implement player objects
 const player = name => {
 	this.name = name
 	const setName = () => {}
